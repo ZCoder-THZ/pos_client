@@ -27,7 +27,13 @@ export default function detail() {
         let random = await axios.get(`http://127.0.0.1:8000/api/products/random`);
 
         random.data.random.forEach(rand => {
-            rand.product_image = `http://127.0.0.1:8000/storage/${rand.product_image}`
+
+            if (rand.product_image.startsWith("https://via.placeholder.com/") || rand.product_image.startsWith("https://images.unsplash.com/")) {
+                // Do nothing as the image is already hosted elsewhere
+            } else {
+                rand.product_image = `http://127.0.0.1:8000/storage/${rand.product_image}`
+
+            }
         });
         moreProducts.value = random.data.random
         console.log(moreProducts.value)
@@ -37,10 +43,17 @@ export default function detail() {
     }
     let getProduct = async () => {
         let dbProduct = await axios.get(`http://127.0.0.1:8000/api/product/${route.params.id}`)
-        dbProduct.data.product.product_image = `http://127.0.0.1:8000/storage/${dbProduct.data.product.product_image}`
+        if (!dbProduct.data.product.product_image.startsWith('https://images.unsplash.com/')) {
+            dbProduct.data.product.product_image = `http://127.0.0.1:8000/storage/${dbProduct.data.product.product_image}`;
+            console.log(dbProduct.data.product.product_image)
+        } else {
+
+        }
         dbProduct.data.product.totalPrice = quantity.value * dbProduct.data.product.product_price * 1
         dbProduct.data.product.quantity = quantity.value
         product.value = dbProduct.data.product
+
+
 
 
 
@@ -164,5 +177,4 @@ export default function detail() {
         decreasement
     }
 }
-// git remote set-url origin https://iamgroot404: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@github.com/vue_pos_client.git
 

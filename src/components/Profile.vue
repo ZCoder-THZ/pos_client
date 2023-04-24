@@ -28,7 +28,7 @@
                         <div class="flex flex-wrap justify-center">
                             <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
                                 <div class="relative">
-                                    <img alt="..." :src="userProfile.image"
+                                    <img alt="..." :src="imageCheck"
                                         class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px">
                                 </div>
                             </div>
@@ -107,9 +107,9 @@ import { ref } from 'vue';
 export default {
     setup() {
 
-        const { userProfile } = profile();
+        const { userProfile, imageCheck } = profile();
 
-        return { userProfile }
+        return { userProfile, imageCheck }
     }
 }
 </script>

@@ -1,6 +1,7 @@
 import axios from "axios";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useTokenStore } from '../store/TokenStore'
+
 import router from '../routes/router'
 export default function register() {
     let tokenStore = useTokenStore()
@@ -13,6 +14,13 @@ export default function register() {
     let password = ref('')
     let password2 = ref('')
     let erorrPassword = ref('')
+    onMounted(() => {
+        tokenStore.getUser();
+        if (Object.keys(tokenStore.user).length > 0) {
+            router.push('/')
+        }
+
+    })
     let accountRegister = async () => {
 
         if (password.value !== password2.value) {

@@ -1,13 +1,13 @@
 <template >
-  <div class=" h-screen mt-16 bg-[#eee]">
+  <div class=" mt-16 bg-[#eee] ">
 
-    <div :class="['flex xs:flex-col md:flex-row lg:flex-row w-screen  h-[100vh]']">
-      <aside :class="{ 'slide-out': asideHidden }"
+    <div :class="['flex xs:flex-col md:flex-row lg:flex-row w-screen  ']">
+      <aside
         class="bg-gray-800 lg:w-1/4 mb-4 lg:w-[1/4] md:w-1/4 xs:w-[100%] py-8 text-white px-4 me-4 border-r-2 border-t-2 border-green-400">
         <!-- Filter by Category -->
         <div class="flex items-center">
           <hr class="flex-grow border-t border-gray-500">
-          <span class="px-4 text-gray-200">Words in the Middle</span>
+          <span class="px-4 text-gray-200">Filter By Categories</span>
           <hr class="flex-grow border-t border-gray-500">
         </div>
 
@@ -43,7 +43,7 @@
         </div>
 
         <div
-          :class="['grid grid-cols-3', asideHidden ? 'grid-col-4' : '', 'gap-4 w-100 mt-5 md:grid-cols-2 lg:grid-cols-3 xs:grid-cols-1 sm:grid-cols-2']">
+          :class="['grid grid-cols-3', asideHidden ? 'grid-col-4' : '', 'gap-4 w-100 mt-5 md:grid-cols-2 lg:grid-cols-3 xs:grid-cols-1  sm:grid-cols-2']">
 
           <div class="mx-auto h-[60%] w-fit border " v-for="product in filteredProduct" :key='product.id'>
             <!-- Card -->
@@ -147,8 +147,13 @@ let getProducts = async () => {
     }
   });
   dbProducts = dbProducts.data.status
-  dbProducts.forEach(pro => {
-    pro.product_image = `http://127.0.0.1:8000/storage/${pro.product_image}`
+  dbProducts.forEach((pro) => {
+
+    if (pro.product_image.startsWith("https://via.placeholder.com/") || pro.product_image.startsWith("https://images.unsplash.com/")) {
+      // Do nothing as the image is already hosted elsewhere
+    } else {
+      pro.product_image = `http://127.0.0.1:8000/storage/${pro.product_image}`;
+    }
   });
   useProductStore.products = dbProducts
   products.value = useProductStore.products
@@ -160,16 +165,16 @@ let getCategories = async () => {
 }
 
 onMounted(() => {
-  if (useToken.token == '' || useToken.token == undefined || useToken.token == null) {
-    router.push('/login')
-  } else {
-    getProducts()
-    getCategories();
-    useProductStore.getCartLocal();
-    products.value = useProductStore.products
-    console.log(useToken.user)
-    console.log('getproduct', useProductStore.products)
-  }
+  // if (useToken.token == '' || useToken.token == undefined || useToken.token == null) {
+  //   // router.push('/login')
+  // } else {
+  getProducts()
+  getCategories();
+  useProductStore.getCartLocal();
+  products.value = useProductStore.products
+  console.log(useToken.user)
+  console.log('getproduct', useProductStore.products)
+  // }
 })
 </script>
 

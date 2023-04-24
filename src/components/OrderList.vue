@@ -49,21 +49,22 @@
                                     </p>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <span v-if="order.status >= 0 && order.status <= 2"
-                                        :class="['relative', 'inline-block', 'px-3', 'py-1', 'font-semibold', { 'text-yellow-900': order.status === 0, 'text-green-900': order.status === 1, 'text-red-900': order.status === 2 }]">
-                                        <span aria-hidden class="absolute inset-0"
-                                            :class="{ 'bg-green-200': order.status === 0, 'bg-blue-200': order.status === 1, 'bg-red-200': order.status === 2 }"></span>
-                                        <span class="relative">{{ statusText }}</span>
-                                    </span>
+                                    <span class="bg-yellow-500 text-white p-1 rounded"
+                                        v-if="order.status === 0">Pending</span>
+                                    <span class="bg-green-500 text-white p-1 rounded"
+                                        v-if="order.status === 1">Success</span>
+                                    <span class="bg-red-500 text-white p-1 rounded"
+                                        v-if="order.status === 2">Rejected</span>
                                 </td>
                                 <td class="relative flex h-20 w-20 justify-between items-center">
                                     <router-link :to="{ name: 'OrderItem', params: { orderCode: order.order_code } }"
-                                        class="flex items-center">
+                                        class="flex items-center hover:text-blue-300">
                                         <i class="fas fa-eye mr-1"></i>
                                         <span
-                                            class="absolute top-0 left-0 bg-gray-900 text-white text-xs px-2 py-1 opacity-0 hover:opacity-100 transition-opacity">view</span>
+                                            class="absolute top-0  left-0 bg-gray-900 text-white text-xs px-2 py-1 opacity-0 hover:opacity-100 transition-opacity">view</span>
                                     </router-link>
-                                    <button @click="removeOrder(order.order_code)" class="ml-2 flex items-center">
+                                    <button @click="removeOrder(order.order_code)"
+                                        class="ml-2 flex items-center hover:text-red-500">
                                         <i class="fa-solid fa-trash"></i>
 
                                     </button>

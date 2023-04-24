@@ -1,11 +1,11 @@
 <template>
-    <div class="flex justify-center items-center bg-[#eee]">
+    <div class="flex justify-center items-center h-100vh bg-[#eee]">
 
-        <div x-data="{ cartOpen: false , isOpen: false }" class="bg-white mt-12">
+        <div class=" mt-12">
 
 
             <main class="my-8">
-                <div class="container mx-auto px-6 bg-[#eee]">
+                <div class="container mx-auto px-6 ">
                     <div class="md:flex md:items-center">
                         <div class="w-full h-64 md:w-1/2 lg:h-96">
                             <img class="h-full w-full rounded-md object-cover max-w-lg mx-auto" :src="product.product_image"
@@ -22,7 +22,8 @@
                                         class="text-gray-500 focus:outline-none focus:text-gray-600">
                                         <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round"
                                             stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                            <path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z">
+                                            </path>
                                         </svg>
                                     </button>
                                     <span class="text-gray-700 text-lg mx-2">{{ quantity }}</span>
@@ -62,7 +63,7 @@
                         <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
                             <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden"
                                 v-for="more in moreProducts">
-                                <div class="flex items-end justify-end h-56 w-full bg-cover"
+                                <div class="flex items-end justify-end h-56 w-full bg-cover bg-center img-center  "
                                     :style="{ backgroundImage: `url(${more.product_image})` }">
                                     <button
                                         class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
@@ -76,8 +77,8 @@
                                     </button>
                                 </div>
                                 <div class="px-5 py-3">
-                                    <h3 class="text-gray-700 uppercase">Chanel</h3>
-                                    <span class="text-gray-500 mt-2">$12</span>
+                                    <h3 class="text-gray-700 uppercase">{{ more.product_name }}</h3>
+                                    <span class="text-gray-500 mt-2">{{ more.product_price }} $</span>
                                 </div>
                             </div>
 
@@ -93,19 +94,16 @@
 
 
 
-<script >
+<script  setup>
 import detail from '../composables/detail';
-export default {
-    setup() {
-
-        const { getProduct, product, quantity, newCart, addToCart, increasement, decreasement, moreProducts } = detail()
 
 
+const { getProduct, product, quantity, newCart, addToCart, increasement, decreasement, moreProducts } = detail()
 
-        return { getProduct, product, quantity, newCart, addToCart, increasement, decreasement, moreProducts }
 
-    },
-}
+
+
+
 </script>
 
 <style lang="scss" scoped></style>
