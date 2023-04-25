@@ -68,7 +68,8 @@ let imageCheck = computed(() => {
           <div v-if="showMenu" class="absolute right-0 mt-2 py-2 w-48 bg-white rounded-lg shadow-xl z-20">
 
             <router-link to="/profile" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</router-link>
-            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Settings</a>
+            <router-link to="/profile/setting"
+              class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Settings</router-link>
 
             <button class="block px-4 py-2 text-gray-800 hover:bg-gray-100"
               @click="useToken.token !== '' ? logout() : login()">{{

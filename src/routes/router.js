@@ -8,6 +8,7 @@ import OrderList from '../components/OrderList.vue'
 import OrderItemList from '../components/OrderItemList.vue'
 import Cart from '../components/Cart.vue'
 import Profile from '../components/Profile.vue'
+import Setting from '../components/Setting.vue'
 
 
 const routes = [
@@ -15,10 +16,12 @@ const routes = [
   { path: '/detail/:id', component: Detail, name: 'Detail' },
   { path: '/login', component: Login, name: 'Login' },
   { path: '/Profile', component: Profile, name: 'Profile' },
+  { path: '/profile/setting', component: Setting, name: 'setting' },
   { path: '/register', component: Register, name: 'register' },
   { path: '/cart', component: Cart, name: 'Cart' },
   { path: '/orderList', component: OrderList, name: 'Order' },
-  { path: '/orderItem/:orderCode', component: OrderItemList, name: 'OrderItem' }
+  { path: '/orderItem/:orderCode', component: OrderItemList, name: 'OrderItem' },
+
 ]
 
 const router = createRouter({
