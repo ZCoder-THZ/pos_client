@@ -32,7 +32,7 @@ export default function profileSetting() {
         if (update.data.status == "success") {
             logout();
         }
-
+        console.log(update.data)
     }
     let logout = () => {
         router.push('/login')
