@@ -1,5 +1,17 @@
 <template >
-    <div class=" mt-16 bg-[#eee] ">
+    <!-- Carousel Slider -->
+    <div class="  xs:hidden sm:block">
+
+        <div class="p-4 mt-[4rem] items-center flex w-screen  bg-[#eee]  ">
+            <img v-for="(image, index) in images" :src="image.image" alt=""
+                :class="['image', { show: image.id == imageIdshow }, 'h-[90vh]', 'w-screen']">
+            <button class="absolute right-20" @click="next"><i class="fa-solid fa-2x fa-arrow-right"></i></button>
+            <button class="absolute left-20" @click="prev"><i class="fa-solid fa-2x fa-arrow-left"></i></button>
+        </div>
+    </div>
+
+    <!--  -->
+    <div class=" mt-16 bg-[#eee] p-4 xs:overflow-hidden xs:px-1">
 
         <div :class="['flex xs:flex-col md:flex-row lg:flex-row w-screen']">
             <aside
@@ -12,7 +24,7 @@
                 </div>
 
                 <ul>
-                    <li class="mb-4" v-for="(category, index) in useProductStore.categories" :key="index">
+                    <li class="mb-4" v-for="( category, index ) in  useProductStore.categories " :key="index">
                         <label class="flex justify-between cursor-pointer">
                             <span class="ml-2">{{ category.category_name }}</span>
                             <input type="checkbox" @change="updateSelectedCategories(category)"
@@ -36,7 +48,7 @@
                 </div>
 
                 <ul>
-                    <li class="mb-4" v-for="(category, index) in useProductStore.categories" :key="index">
+                    <li class="mb-4" v-for="( category, index ) in  useProductStore.categories " :key="index">
                         <label class="flex justify-between cursor-pointer">
                             <span class="ml-2">{{ category.category_name }}</span>
                             <input type="checkbox" @change="updateSelectedCategories(category)"
@@ -85,7 +97,7 @@
                 <div
                     :class="['grid grid-cols-3', asideHidden ? 'grid-col-4' : '', 'gap-4 w-100 mt-5 md:grid-cols-2 lg:grid-cols-3 xs:grid-cols-1  sm:grid-cols-2']">
 
-                    <div class="mx-auto h-[60%] w-fit border " v-for="product in filteredProduct" :key='product.id'>
+                    <div class="mx-auto h-[60%] w-fit border " v-for=" product  in  filteredProduct " :key='product.id'>
                         <!-- Card -->
                         <div class="w-72 h-fit group border">
                             <div class="relative overflow-hidden">
@@ -115,20 +127,46 @@
 </template>
 <script setup>
 import { ref, onMounted, computed } from 'vue'
+import image1 from '../assets/carousel-items/image1.jpg';
+import image2 from '../assets/carousel-items/image2.jpg';
+import image3 from '../assets/carousel-items/image3.jpg';
 import { useRouter } from 'vue-router';
 import { useTokenStore } from '../store/TokenStore';
 import { productStore } from '../store/ProductStore';
 import axios from 'axios'
 import Swal from 'sweetalert2';
-
+const imageIdshow = ref(1);
+let images = [
+    { id: 1, image: image1 },
+    { id: 2, image: image2 },
+    { id: 3, image: image3 }
+]
 import Detail from './Detail.vue';
 let asideHidden = ref(false)
 let useToken = useTokenStore()
 let router = useRouter()
 let useProductStore = productStore();
 const selectedCategories = ref([]);
+
 let searchKey = ref();
 let products = ref();
+const next = () => {
+    if (imageIdshow.value >= 3) {
+        imageIdshow.value = 1;
+        console.log(imageIdshow.value);
+    }
+    imageIdshow.value++;
+
+};
+const prev = () => {
+    if (imageIdshow.value <= 1) {
+        imageIdshow.value = images.length;
+        console.log(imageIdshow.value);
+    } else {
+        imageIdshow.value--;
+        console.log(imageIdshow.value);
+    }
+};
 const handleChange = (event) => {
     if (event.target.value == 1) {
 
@@ -216,6 +254,7 @@ onMounted(() => {
     // if (useToken.token == '' || useToken.token == undefined || useToken.token == null) {
     //   // router.push('/login')
     // } else {
+    setInterval(() => { next() }, 3000)
     getProducts()
     getCategories();
     useProductStore.getCartLocal();
@@ -230,6 +269,14 @@ onMounted(() => {
 .slide-out {
     transform: translateX(-100%);
     transition: transform 0.3s ease-in-out;
+}
+
+.image {
+    display: none;
+}
+
+.show {
+    display: block;
 }
 
 .aside-btn {

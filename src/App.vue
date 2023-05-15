@@ -42,7 +42,7 @@ let imageCheck = computed(() => {
 </script>
 
 <template>
-    <div class="flex flex-col min-h-screen">
+    <div class="flex flex-col min-h-screen ">
 
         <nav
             class="flex items-center w-screen   justify-between p-4 fixed top-0 left-0 z-10 bg-gray-700 text-white border-b-4 flex border-green-500 h-14">

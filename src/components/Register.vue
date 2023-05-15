@@ -1,7 +1,7 @@
 <template>
-    <div class="bg-black">
+    <div class="">
         <div class="w-screen  flex items-center justify-center">
-            <div class="border-2 mt-4 p-4 border-gray-600 rounded">
+            <div class="border-2 mt-4 p-4 border-gray-600 rounded bg-slate-900 mt-[6rem] mb-[4rem]">
                 <h1 class="text-center text-white text-3xl my-5 underline ">Register</h1>
                 <div class="grid gap-6 mb-6 md:grid-cols-2">
 
@@ -67,9 +67,11 @@
                     <span class="text-red-500" v-if="erorrPassword !== ''">{{ erorrPassword }}</span>
                 </div>
 
-                <button
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    @click="accountRegister">Submit</button>
+                <div class="flex justify-end">
+                    <button
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        @click="accountRegister">Submit</button>
+                </div>
             </div>
         </div>
     </div>
