@@ -1,11 +1,13 @@
 <script setup>
 import { useTokenStore } from './store/TokenStore';
 import { productStore } from './store/ProductStore';
+import { ApiStore } from './store/ApiStore'
 
 import router from './routes/router';
 import { ref, onMounted, computed } from 'vue';
 
 let useToken = useTokenStore()
+let useApiStore = ApiStore();
 let useProductStore = productStore();
 const showMenu = ref(false);
 const isLoggedin = ref(false)
@@ -26,7 +28,7 @@ onMounted(() => {
     console.log(useToken.user)
 })
 let imageCheck = computed(() => {
-    if (useToken.user.image !== "http://127.0.0.1:8000/storage/users/null") {
+    if (useToken.user.image !== `http://${useApiStore.apiRoute}/storage/null`) {
         return useToken.user.image
     } else {
         if (useToken.user.gender === 'female') {
@@ -57,7 +59,19 @@ let imageCheck = computed(() => {
                 <router-link to="/orderList" class="text-white hover:text-gray-300">Orders</router-link>
                 <router-link v-if="!Object.keys(useToken.user).length" to="/login"
                     class="text-white hover:text-gray-300">Login</router-link>
+                <div class="flex items-center space-x-4">
+                    <router-link to="/cart" class="relative  text-gray-600 hover:text-gray-800 transition duration-300">
+                        <span class="fa-stack fa-lg m-3 ">
+                            <i class="fas fa-shopping-cart fa-stack-1x"></i>
 
+                            <span
+                                class="fa-stack fa-xs absolute top-0 right-0 -mt-2 -mr-2 bg-red-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-xs font-semibold">{{
+                                    useProductStore.cart.length }}</span>
+                        </span>
+                    </router-link>
+
+
+                </div>
                 <div class="relative" v-if="Object.keys(useToken.user).length">
                     <button @click="showMenu = !showMenu">
                         <div class="">
@@ -80,18 +94,7 @@ let imageCheck = computed(() => {
                     </div>
                 </div>
 
-                <div class="flex items-center space-x-4">
-                    <router-link to="/cart" class="relative text-gray-600 hover:text-gray-800 transition duration-300">
-                        <span class="fa-stack fa-lg">
-                            <i class="fas fa-shopping-cart fa-stack-1x"></i>
-                            <span
-                                class="fa-stack fa-xs absolute top-0 right-0 -mt-2 -mr-2 bg-red-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-xs font-semibold">{{
-                                    useProductStore.cart.length }}</span>
-                        </span>
-                    </router-link>
 
-
-                </div>
             </ul>
         </nav>
 

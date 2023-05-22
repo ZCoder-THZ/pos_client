@@ -12,9 +12,10 @@
                                 alt="Nike Air">
                         </div>
                         <div class="w-full max-w-lg mx-auto mt-5 md:ml-8 md:mt-0 md:w-1/2">
-                            <h3 class="text-gray-700 uppercase text-lg">{{ product.product_name }}</h3>
-                            <span class="text-gray-500 mt-3">${{ product.product_price }}</span>
+                            <h3 class="text-gray-700 uppercase text-lg">Product Name : {{ product.product_name }}</h3>
+                            <span class="text-gray-500 mt-3">Price : ${{ product.product_price }}</span>
                             <hr class="my-3">
+                            <p class="text-sm text-gray-400">Description : {{ product.product_description }}</p>
                             <div class="mt-2">
                                 <label class="text-gray-700 text-sm" for="count">Count:</label>
                                 <div class="flex items-center mt-1">
@@ -42,8 +43,8 @@
                                     {{ product.totalPrice * quantity }}
                                 </div>
                             </div>
-                            <div class="flex items-center mt-6">
-                                <button @click="addToCart"
+                            <div class="flex items-center mt-6" @click="addToCart">
+                                <button
                                     class="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">Order
                                     Now</button>
                                 <button

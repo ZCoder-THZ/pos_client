@@ -1,18 +1,21 @@
 import { ref, onMounted, computed } from "vue"
 import axios from "axios";
 import { useTokenStore } from '../store/TokenStore';
+import { ApiStore } from '../store/ApiStore'
+
 export default function orderList() {
     let orders = ref();
+    let useApiStore = ApiStore()
     let useToken = useTokenStore()
     let userId = ref();
     let getOrderList = async () => {
-        let dbOrderList = await axios.get(`http://127.0.0.1:8000/api/order/${userId.value}`);
+        let dbOrderList = await axios.get(`http://${useApiStore.apiRoute}/api/order/${userId.value}`);
         orders.value = dbOrderList.data.orders
         console.log(orders.value)
-        // console.log(orders.value[0].status)  
+        // console.log(orders.value[0].status)
     }
     let removeOrder = async (orderCode) => {
-        let dbOrderList = await axios.delete(`http://127.0.0.1:8000/api/order/${orderCode}`);
+        let dbOrderList = await axios.delete(`http://${useApiStore.apiRoute}/api/order/${orderCode}`);
 
         getOrderList();
 

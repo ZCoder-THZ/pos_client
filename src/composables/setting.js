@@ -1,11 +1,14 @@
 import { ref, onMounted, computed } from "vue"
 import { useTokenStore } from '../store/TokenStore';
+import { ApiStore } from '../store/ApiStore'
+
 import axios from "axios";
 import { useRouter } from "vue-router";
 
 export default function profileSetting() {
     let userId = ref();
     let router = useRouter();
+    let useApiStore = ApiStore();
     let useToken = useTokenStore();
     let userName = ref();
     let email = ref();
@@ -24,7 +27,7 @@ export default function profileSetting() {
         updateData.append('address', address.value);
         updateData.append('phone', phone.value);
 
-        let update = await axios.post('http://127.0.0.1:8000/api/editProfile', updateData, {
+        let update = await axios.post(`http://${useApiStore.apiRoute}/api/editProfile`, updateData, {
             headers: {
                 "Content-Type": 'multipart/form-data'
             }
@@ -48,7 +51,7 @@ export default function profileSetting() {
 
     console.log(selectedImage.value)
     let getUserImage = computed(() => {
-        if (userImage.value !== "http://127.0.0.1:8000/storage/users/null") {
+        if (userImage.value !== `http://${useApiStore.apiRoute}/storage/null`) {
             return userImage.value
         } else {
             if (gender.value == 'male') {

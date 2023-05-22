@@ -38,6 +38,9 @@
 import { ref, onMounted } from 'vue'
 import axios from 'axios';
 import { useTokenStore } from '../store/TokenStore';
+import { ApiStore } from '../store/ApiStore'
+let useApiStore = ApiStore()
+
 import router from '../routes/router';
 
 let useToken = useTokenStore()
@@ -53,7 +56,7 @@ onMounted(() => {
 })
 
 let login = async () => {
-    let log = await axios.post('http://127.0.0.1:8000/api/login', {
+    let log = await axios.post(`http://${useApiStore.apiRoute}/api/login`, {
         email: email.value,
         password: password.value
     });
@@ -61,7 +64,7 @@ let login = async () => {
     if (log.data.token) {
         let token = log.data.token
         useToken.token = token
-        log.data.user.image = `http://127.0.0.1:8000/storage/users/${log.data.user.image}`
+        log.data.user.image = `http://${useApiStore.apiRoute}/storage/${log.data.user.image}`
         useToken.user = log.data.user
         useToken.login(token);
         useToken.storeUser(log.data.user)

@@ -50,11 +50,11 @@
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                     <span class="bg-yellow-500 text-white p-1 rounded"
-                                        v-if="order.status === 0">Pending</span>
+                                        v-if="order.status === '0'">Pending</span>
                                     <span class="bg-green-500 text-white p-1 rounded"
-                                        v-if="order.status === 1">Success</span>
+                                        v-if="order.status === '1'">Success</span>
                                     <span class="bg-red-500 text-white p-1 rounded"
-                                        v-if="order.status === 2">Rejected</span>
+                                        v-if="order.status === '2'">Rejected</span>
                                 </td>
                                 <td class="relative flex h-20 w-20 justify-between items-center">
                                     <router-link :to="{ name: 'OrderItem', params: { orderCode: order.order_code } }"

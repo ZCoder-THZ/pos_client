@@ -2,12 +2,13 @@
 import { onMounted } from 'vue';
 import { ref } from "vue";
 import { useRoute } from "vue-router";
-import Swal from 'sweetalert2';
-
+import { ApiStore } from '../store/ApiStore'
 import { productStore } from "../store/ProductStore";
+import Swal from 'sweetalert2';
 import axios from "axios";
 
 export default function detail() {
+    let useApiStore = ApiStore()
     let route = useRoute();
     let useProductStore = productStore();
     let product = ref({});
@@ -24,14 +25,14 @@ export default function detail() {
 
     }
     let getRandomProduct = async () => {
-        let random = await axios.get(`http://127.0.0.1:8000/api/products/random`);
+        let random = await axios.get(`http://${useApiStore.apiRoute}/api/products/random`);
 
         random.data.random.forEach(rand => {
 
             if (rand.product_image.startsWith("https://via.placeholder.com/") || rand.product_image.startsWith("https://images.unsplash.com/")) {
                 // Do nothing as the image is already hosted elsewhere
             } else {
-                rand.product_image = `http://127.0.0.1:8000/storage/${rand.product_image}`
+                rand.product_image = `http://${useApiStore.apiRoute}/storage/${rand.product_image}`
 
             }
         });
@@ -42,9 +43,9 @@ export default function detail() {
 
     }
     let getProduct = async () => {
-        let dbProduct = await axios.get(`http://127.0.0.1:8000/api/product/${route.params.id}`)
+        let dbProduct = await axios.get(`http://${useApiStore.apiRoute}/api/product/${route.params.id}`)
         if (!dbProduct.data.product.product_image.startsWith('https://images.unsplash.com/')) {
-            dbProduct.data.product.product_image = `http://127.0.0.1:8000/storage/${dbProduct.data.product.product_image}`;
+            dbProduct.data.product.product_image = `http://${useApiStore.apiRoute}/storage/${dbProduct.data.product.product_image}`;
             console.log(dbProduct.data.product.product_image)
         } else {
 

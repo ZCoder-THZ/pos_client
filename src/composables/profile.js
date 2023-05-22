@@ -1,12 +1,15 @@
 import { ref, computed } from "vue"
 import { useTokenStore } from '../store/TokenStore';
+import { ApiStore } from '../store/ApiStore'
+
 export default function profile() {
     let useToken = useTokenStore();
+    let useApiStore = ApiStore();
     let userProfile = ref();
     useToken.getUser()
     userProfile.value = useToken.user;
     let imageCheck = computed(() => {
-        if (useToken.user.image !== "http://127.0.0.1:8000/storage/users/null") {
+        if (useToken.user.image !== `http://${useApiStore.apiRoute}/storage/users/null`) {
             return useToken.user.image
         } else {
             if (useToken.user.gender === 'female') {

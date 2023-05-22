@@ -2,29 +2,33 @@
     <!-- Carousel Slider -->
     <div class="  xs:hidden sm:block">
 
-        <div class="p-4 mt-[4rem] items-center flex w-screen  bg-[#eee]  ">
-            <img v-for="(image, index) in images" :src="image.image" alt=""
-                :class="['image', { show: image.id == imageIdshow }, 'h-[90vh]', 'w-screen']">
-            <button class="absolute right-20" @click="next"><i class="fa-solid fa-2x fa-arrow-right"></i></button>
-            <button class="absolute left-20" @click="prev"><i class="fa-solid fa-2x fa-arrow-left"></i></button>
+        <div class=" py-3 px-[3rem] mt-[4rem] items-center flex w-screen h-[40vh] bg-[#eee]  "
+            :style="{ backgroundImage: 'url(' + image3 + ')', backgroundPosition: 'center', backgroundSize: ' cover' }">
+
+
+
+
         </div>
     </div>
 
-    <!--  -->
-    <div class=" mt-16 bg-[#eee] p-4 xs:overflow-hidden xs:px-1">
 
-        <div :class="['flex xs:flex-col md:flex-row lg:flex-row w-screen']">
+    <!--  -->
+    <div class=" mt-16 bg-[#eee] p-4 xs:overflow-hidden xs:px-1 ">
+
+        <div :class="['flex xs:flex-col md:flex-row lg:flex-row w-screen md:mt-[4rem] lg:mt-4rem ']">
             <aside
-                class="bg-gray-800 xs:hidden md:block lg-block lg:w-1/4 mb-4 lg:w-[1/4] md:w-1/4 xs:w-[100%] py-8 text-white px-4 me-4 border-r-2 border-t-2 border-green-400">
+                class="mt-[9rem] bg-gray-800 xs:hidden md:block lg-block lg:w-1/4 mb-4 lg:w-[1/4] md:w-1/4 xs:w-[100%] py-8 text-white px-4 me-4 border-r-2 border-t-2 border-green-400">
                 <!-- Filter by Category -->
+
                 <div class="flex items-center">
                     <hr class="flex-grow border-t border-gray-500">
                     <span class="px-4 text-gray-200">Filter By Categories</span>
+
                     <hr class="flex-grow border-t border-gray-500">
                 </div>
 
                 <ul>
-                    <li class="mb-4" v-for="( category, index ) in  useProductStore.categories " :key="index">
+                    <li class="mb-4" v-for="(  category, index  ) in   useProductStore.categories  " :key="index">
                         <label class="flex justify-between cursor-pointer">
                             <span class="ml-2">{{ category.category_name }}</span>
                             <input type="checkbox" @change="updateSelectedCategories(category)"
@@ -43,12 +47,13 @@
                 <!-- Filter by Category -->
                 <div class="flex items-center">
                     <hr class="flex-grow border-t border-gray-500">
-                    <span class="px-4 text-gray-200">Filter By Categories</span>
+                    <span class="px-4 text-gray-200">Filter By Categories </span>
+
                     <hr class="flex-grow border-t border-gray-500">
                 </div>
 
                 <ul>
-                    <li class="mb-4" v-for="( category, index ) in  useProductStore.categories " :key="index">
+                    <li class="mb-4" v-for="(  category, index  ) in   useProductStore.categories  " :key="index">
                         <label class="flex justify-between cursor-pointer">
                             <span class="ml-2">{{ category.category_name }}</span>
                             <input type="checkbox" @change="updateSelectedCategories(category)"
@@ -58,7 +63,7 @@
                 </ul>
             </aside>
 
-            <div class="flex flex-col">
+            <div class="flex flex-col min-w-[76%] mr-2">
 
                 <div
                     class="mt-2 flex sm:flex-col md:flex-row md:w-full space-x-4 sm:justify-center lg:justify-between md:justify-between items-center ">
@@ -72,7 +77,8 @@
                                         d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                                 </svg>
                             </div>
-                            <input @input="getProducts" type="search" id="default-search" v-model="searchKey"
+                            <input @input="getProducts" placeholder="enter earch" type="search" id="default-search"
+                                v-model="searchKey"
                                 class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 required>
                             <button @click="getProducts()"
@@ -83,21 +89,26 @@
 
                 </div>
 
-                <div class="flex mt-5 bg md:justify-end lg:justify-end sm:justify-center xs:justify-center">
+                <div
+                    class="flex mt-5 bg md:justify-end lg:justify-end sm:justify-center xs:justify-center md:mr-4 xm:mr-4 lg:mr-4">
 
                     <select @change="handleChange($event)" id="underline_select"
-                        class="block py-2.5 px-0  w-[25%] text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
-                        <option selected>Filter by Price</option>
-                        <option value="1">ascending</option>
+                        class="block text text-right py-2.5 px-0  w-[25%] text-sm text-black bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"><i
+                            class="fa-solid fa-arrow-down-short-wide"></i>
+                        <option selected>Filter by Price
+
+                        </option>
+                        <option value="1">ascending </option>
                         <option value="2">descending</option>
                     </select>
+
                 </div>
 
 
                 <div
                     :class="['grid grid-cols-3', asideHidden ? 'grid-col-4' : '', 'gap-4 w-100 mt-5 md:grid-cols-2 lg:grid-cols-3 xs:grid-cols-1  sm:grid-cols-2']">
 
-                    <div class="mx-auto h-[60%] w-fit border " v-for=" product  in  filteredProduct " :key='product.id'>
+                    <div class="mx-auto h-[60%] w-fit border " v-for="  product   in   filteredProduct  " :key='product.id'>
                         <!-- Card -->
                         <div class="w-72 h-fit group border">
                             <div class="relative overflow-hidden">
@@ -130,18 +141,17 @@ import { ref, onMounted, computed } from 'vue'
 import image1 from '../assets/carousel-items/image1.jpg';
 import image2 from '../assets/carousel-items/image2.jpg';
 import image3 from '../assets/carousel-items/image3.jpg';
+
+
 import { useRouter } from 'vue-router';
 import { useTokenStore } from '../store/TokenStore';
 import { productStore } from '../store/ProductStore';
+import { ApiStore } from '../store/ApiStore'
 import axios from 'axios'
 import Swal from 'sweetalert2';
-const imageIdshow = ref(1);
-let images = [
-    { id: 1, image: image1 },
-    { id: 2, image: image2 },
-    { id: 3, image: image3 }
-]
+
 import Detail from './Detail.vue';
+let useApiStore = ApiStore();
 let asideHidden = ref(false)
 let useToken = useTokenStore()
 let router = useRouter()
@@ -150,23 +160,7 @@ const selectedCategories = ref([]);
 
 let searchKey = ref();
 let products = ref();
-const next = () => {
-    if (imageIdshow.value >= 3) {
-        imageIdshow.value = 1;
-        console.log(imageIdshow.value);
-    }
-    imageIdshow.value++;
 
-};
-const prev = () => {
-    if (imageIdshow.value <= 1) {
-        imageIdshow.value = images.length;
-        console.log(imageIdshow.value);
-    } else {
-        imageIdshow.value--;
-        console.log(imageIdshow.value);
-    }
-};
 const handleChange = (event) => {
     if (event.target.value == 1) {
 
@@ -195,14 +189,20 @@ let goProductDetail = (id) => {
 
 const filteredProduct = computed(() => {
     return selectedCategories.value.length === 0 ? products.value : products.value.filter(product => selectedCategories.value.includes(product.category_id * 1))
+
 })
 
 const updateSelectedCategories = (category) => {
-    if (selectedCategories.value.includes(category.category_id)) {
-        selectedCategories.value = selectedCategories.value.filter(c => c !== category.category_id);
+    console.log(selectedCategories.value)
+    if (selectedCategories.value.includes(parseInt(category.category_id))) {
+        selectedCategories.value = selectedCategories.value.filter(c => c !== parseInt(category.category_id));
+        console.log('unselected category', selectedCategories.value);
     } else {
-        selectedCategories.value.push(category.category_id);
+        selectedCategories.value.push(parseInt(category.category_id));
+        console.log('selected category', selectedCategories.value);
     }
+    console.log(parseInt(category.category_id));
+
 }
 
 let addToCart = (event, id, product_price, product_name, product_image) => {
@@ -226,27 +226,33 @@ let addToCart = (event, id, product_price, product_name, product_image) => {
 }
 
 let getProducts = async () => {
-    let dbProducts = await axios.get('http://127.0.0.1:8000/api/products', {
+    let dbProducts = await axios.get(`http://${useApiStore.apiRoute}/api/products`, {
         params: {
             search: searchKey.value
 
         }
+
     });
     dbProducts = dbProducts.data.status
     dbProducts.forEach((pro) => {
 
         if (pro.product_image.startsWith("https://via.placeholder.com/") || pro.product_image.startsWith("https://images.unsplash.com/")) {
             // Do nothing as the image is already hosted elsewhere
+            pro.category_id = pro.category_id * 1
         } else {
-            pro.product_image = `http://127.0.0.1:8000/storage/${pro.product_image}`;
+            pro.product_image = `http://${useApiStore.apiRoute}/storage/${pro.product_image}`;
+            pro.category_id = pro.category_id * 1
+
+
         }
     });
     useProductStore.products = dbProducts
     products.value = useProductStore.products
+    console.log(products.value)
 }
 
 let getCategories = async () => {
-    let dbCategories = await axios.get('http://127.0.0.1:8000/api/category');
+    let dbCategories = await axios.get(`http://${useApiStore.apiRoute}/api/category`);
     useProductStore.categories = dbCategories.data.category
 }
 
@@ -254,13 +260,12 @@ onMounted(() => {
     // if (useToken.token == '' || useToken.token == undefined || useToken.token == null) {
     //   // router.push('/login')
     // } else {
-    setInterval(() => { next() }, 3000)
+
     getProducts()
     getCategories();
     useProductStore.getCartLocal();
     products.value = useProductStore.products
-    console.log(useToken.user)
-    console.log('getproduct', useProductStore.products)
+
     // }
 })
 </script>

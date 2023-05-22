@@ -1,10 +1,12 @@
 import axios from "axios";
 import { ref, onMounted } from "vue";
 import { useTokenStore } from '../store/TokenStore'
+import { ApiStore } from '../store/ApiStore'
 
 import router from '../routes/router'
 export default function register() {
     let tokenStore = useTokenStore()
+    let useApiStore = ApiStore();
     let username = ref('')
     let addressValue = ref('')
     let email = ref('')
@@ -36,7 +38,7 @@ export default function register() {
                 "address": address.value,
 
             }
-            let create = await axios.post('http://127.0.0.1:8000/api/register', data)
+            let create = await axios.post(`http://${useApiStore.apiRoute}/api/register`, data)
             let dataApi = create.data
             tokenStore.token = dataApi.token;
             tokenStore.user = dataApi.user;
