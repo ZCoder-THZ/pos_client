@@ -40,7 +40,7 @@
                             <tr v-for="order in orderItems">
 
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p class="text-gray-900 whitespace-no-wrap">{{ order.product_name }}</p>
+
                                     <img style="width:150px" :src="order.product_image" alt="">
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">

@@ -5,7 +5,7 @@ import { ApiStore } from '../store/ApiStore'
 
 import router from '../routes/router'
 export default function register() {
-    let tokenStore = useTokenStore()
+    let useToken = useTokenStore()
     let useApiStore = ApiStore();
     let username = ref('')
     let addressValue = ref('')
@@ -17,8 +17,8 @@ export default function register() {
     let password2 = ref('')
     let erorrPassword = ref('')
     onMounted(() => {
-        tokenStore.getUser();
-        if (Object.keys(tokenStore.user).length > 0) {
+        useToken.getUser();
+        if (Object.keys(useToken.user).length > 0) {
             router.push('/')
         }
 
@@ -39,11 +39,12 @@ export default function register() {
 
             }
             let create = await axios.post(`http://${useApiStore.apiRoute}/api/register`, data)
-            let dataApi = create.data
-            tokenStore.token = dataApi.token;
-            tokenStore.user = dataApi.user;
+            // let dataApi = create.data
 
-            router.push('/')
+            // useToken.token = dataApi.token;
+            // useToken.user = dataApi.user;
+
+            router.push('/login')
 
         }
     }

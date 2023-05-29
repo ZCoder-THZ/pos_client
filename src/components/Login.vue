@@ -11,13 +11,14 @@
                 <div style="height: inherit;min-height: inherit;"
                     class="mb-3 flex  shadow-md  flex-col border border-green-400 bg-white text-green-700 p-8">
                     <h3 class="text-center text-3xl underline">Sign In</h3>
-                    <h3 class="text-center text-red-500" v-if="errMessage !== ''">{{ errMessage }}</h3>
                     <input class="my-3 border-2 border-green-500 py-2 rounded px-4 focus:outline-none" type="email"
                         v-model="email" placeholder="Enter Email" />
                     <span v-if="email == ''">Enter Email</span>
                     <input class="my-3 border-2 border-green-500 py-2 rounded px-4 focus:outline-none" type="password"
                         v-model="password" placeholder="Enter Password" />
                     <span v-if="password == ''">Enter Password</span>
+                    <h3 class="text-center text-red-500" v-if="errMessage !== ''">{{ errMessage }}</h3>
+
                     <div class="flex justify-between">
                         <button type="submit" class="text-green text-lg text-bold mt-3 hover:underline">Log
                             In</button>

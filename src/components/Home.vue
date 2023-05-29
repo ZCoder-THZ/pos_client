@@ -2,45 +2,65 @@
     <!-- Carousel Slider -->
     <div class="  xs:hidden sm:block">
 
-        <div class=" py-3 px-[3rem] mt-[4rem] items-center flex w-screen h-[40vh] bg-[#eee]  "
+        <div class="flex px-6 mt-14 items-center justify-center w-screen h-[90vh] bg-gray-100"
             :style="{ backgroundImage: 'url(' + image3 + ')', backgroundPosition: 'center', backgroundSize: ' cover' }">
+            <div class="max-w-3xl text-white bg-gray-800 bg-opacity-70 p-8 rounded-lg">
+                <h1 class="text-4xl font-bold mb-1">50% Discount</h1>
+                <div class="bg-green-400 h-1 w-60 mb-3"></div>
+                <p class="text-white-800">
+                    Lorem ipsum dolo sit amet, consectetur adipisicing elit. Hic numquam dignissimos adipisci sed laborum
+                    officia
+                    aliquid labore, assumenda molestias. Numquam quas aperiam deleniti nisi non nam unde itaque obcaecati,
+                    eos
+                    tenetur rerum ullam perspiciatis neque omnis id aspernatur esse beatae.
+                </p>
+                <div class="flex justify-end mt-5">
+                    <a class="text-center  border w-28 py-1 border-green-400 hover:bg-gray-800 hover:text-green-400 hover:bg-opacity-5"
+                        href="#showcase">Shop</a>
+                </div>
+            </div>
+        </div>
 
+    </div>
+    <div id="showcase" class="flex   w-100 flex-row mt-4 justify-center items-center mx-2 hidden md:flex lg:flex">
+        <div class="ml-4 flex flex-col justify-center w-[50%] max-w-[50%]  top-0">
 
+            <div class="flex justify-center items-center flex-col">
+                <h1 class="text-center text-xl mt-3">Filter by Categories</h1>
+                <div class="bg-green-400 h-[2px] w-60 mb-3"></div>
+            </div>
 
-
+            <div class="space-x-4">
+                <div v-for="(category, index) in useProductStore.categories" :key="index"
+                    class="rounded-md inline-block px-3 py-2 my-2 border-2 border-green-500">
+                    <div class="flex justify-between">
+                        <span class="ml-2 me-2">{{ category.category_name }}</span>
+                        <input type="checkbox" @change="updateSelectedCategories(category)"
+                            class="w-6 h-6 accent-green-700 focus:accent-green-700 focus:border-green-400">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
 
+    <div class="flex justify-end me-11">
+
+
+
+    </div>
     <!--  -->
-    <div class=" mt-16 bg-[#eee] p-4 xs:overflow-hidden xs:px-1 ">
+    <div class=" mt-2  bg-[#eee] p-4 xs:overflow-hidden xs:px-1 sm:mx-0 lg:mx-4 sm:mx-2 md:mx-4 ">
+        <!-- <hr> -->
+        <div :class="['flex xs:flex-col md:flex-row lg:flex-row w-screen md:mt-[2rem] lg:mt-[2rem] ']">
 
-        <div :class="['flex xs:flex-col md:flex-row lg:flex-row w-screen md:mt-[4rem] lg:mt-4rem ']">
-            <aside
-                class="mt-[9rem] bg-gray-800 xs:hidden md:block lg-block lg:w-1/4 mb-4 lg:w-[1/4] md:w-1/4 xs:w-[100%] py-8 text-white px-4 me-4 border-r-2 border-t-2 border-green-400">
-                <!-- Filter by Category -->
-
-                <div class="flex items-center">
-                    <hr class="flex-grow border-t border-gray-500">
-                    <span class="px-4 text-gray-200">Filter By Categories</span>
-
-                    <hr class="flex-grow border-t border-gray-500">
-                </div>
-
-                <ul>
-                    <li class="mb-4" v-for="(  category, index  ) in   useProductStore.categories  " :key="index">
-                        <label class="flex justify-between cursor-pointer">
-                            <span class="ml-2">{{ category.category_name }}</span>
-                            <input type="checkbox" @change="updateSelectedCategories(category)"
-                                class="w-6 h-6 accent-green-700 focus:accent-green-700">
-                        </label>
-                    </li>
-                </ul>
-            </aside>
             <!-- hide in md and lg -->
 
-            <button class="sm:hidden px-2 py-3" @click="asideHidden = !asideHidden ? true : false"> <i
-                    class="fa-solid fa-bars fa-2x float-right mr-3"></i></button>
+            <div class="flex justify-end">
+                <button class="sm:hidden bg-green-600 text-white rounded  mt-6 px-4 py-2 mr-3 mb-3"
+                    @click="asideHidden = !asideHidden ? true : false">
+                    Filter</button>
+            </div>
             <!-- !asideHidden=asideHidden  -->
             <aside v-if="asideHidden"
                 class="bg-gray-800 sm:hidden lg-block lg:w-1/4 mb-4 lg:w-[1/4] md:w-1/4 xs:w-[100%] py-8 text-white px-4 me-4 border-r-2 border-t-2 border-green-400">
@@ -62,14 +82,16 @@
                     </li>
                 </ul>
             </aside>
+            <div class="flex">
 
-            <div class="flex flex-col min-w-[76%] mr-2">
 
-                <div
-                    class="mt-2 flex sm:flex-col md:flex-row md:w-full space-x-4 sm:justify-center lg:justify-between md:justify-between items-center ">
-                    <div></div>
-                    <div class="md:w-[40%] sm:w-screen xs:w-screen">
-                        <div class="relative">
+            </div>
+            <div class="flex flex-col min-w-[76%] mx-auto">
+
+                <div>
+                    <div class="flex sm:justify-end lg:justify-end md:justify-end justify-center">
+
+                        <div class="relative w-90 ">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                 <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none"
                                     stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -84,31 +106,25 @@
                             <button @click="getProducts()"
                                 class="text-white absolute right-2.5 bottom-2.5 bg-slate-600 hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                         </div>
-
                     </div>
+                    <div class="mt-4 flex sm:justify-end lg:justify-end md:justify-end justify-center">
 
-                </div>
+                        <select @change="handleChange($event)" id="underline_select"
+                            class=" w-40  text-black px-4 py-2 rounded">
+                            <option selected>Filter by Price
 
-                <div
-                    class="flex mt-5 bg md:justify-end lg:justify-end sm:justify-center xs:justify-center md:mr-4 xm:mr-4 lg:mr-4">
-
-                    <select @change="handleChange($event)" id="underline_select"
-                        class="block text text-right py-2.5 px-0  w-[25%] text-sm text-black bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"><i
-                            class="fa-solid fa-arrow-down-short-wide"></i>
-                        <option selected>Filter by Price
-
-                        </option>
-                        <option value="1">ascending </option>
-                        <option value="2">descending</option>
-                    </select>
-
+                            </option>
+                            <option value="1">ascending </option>
+                            <option value="2">descending</option>
+                        </select>
+                    </div>
                 </div>
 
 
                 <div
-                    :class="['grid grid-cols-3', asideHidden ? 'grid-col-4' : '', 'gap-4 w-100 mt-5 md:grid-cols-2 lg:grid-cols-3 xs:grid-cols-1  sm:grid-cols-2']">
+                    :class="['grid grid-cols-3 mx-auto', asideHidden ? 'grid-col-4' : '', 'gap-4 w-100 mt-5 md:grid-cols-3 lg:grid-cols-4 xs:grid-cols-1  sm:grid-cols-2']">
 
-                    <div class="mx-auto h-[60%] w-fit border " v-for="  product   in   filteredProduct  " :key='product.id'>
+                    <div class=" h-[60%] w-fit border " v-for="  product   in   filteredProduct  " :key='product.id'>
                         <!-- Card -->
                         <div class="w-72 h-fit group border">
                             <div class="relative overflow-hidden">
@@ -140,7 +156,7 @@
 import { ref, onMounted, computed } from 'vue'
 import image1 from '../assets/carousel-items/image1.jpg';
 import image2 from '../assets/carousel-items/image2.jpg';
-import image3 from '../assets/carousel-items/image3.jpg';
+import image3 from '../assets/hero.jpg';
 
 
 import { useRouter } from 'vue-router';

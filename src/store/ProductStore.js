@@ -7,7 +7,7 @@ export const productStore = defineStore('product', {
             products: '',
             categories: '',
             cart: []
-            ,
+
         }
 
     },
@@ -25,7 +25,7 @@ export const productStore = defineStore('product', {
             let cartData = localStorage.getItem('cart')
 
             if (cartData) {
-                this.cart = JSON.parse(cartData)
+                return this.cart = JSON.parse(cartData)
             }
 
         },

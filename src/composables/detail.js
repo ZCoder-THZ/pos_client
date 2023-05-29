@@ -59,84 +59,20 @@ export default function detail() {
 
 
     }
-    // let addToCart = (event, more = {}) => {
-    //     let cart = useProductStore.cart;
-    //     if (Object.keys(more).length > 0) {
-    //         let id = more.product_id;
-    //         let existingCartItem = cart.find(item => item.id === id);
-    //         if (existingCartItem) {
-    //             successAlert()
 
-    //             // Update the quantity of the existing item
-    //             existingCartItem.quantity += quantity.value
-
-    //             console.log('Quantity updated for existing item:', existingCartItem);
-    //             useProductStore.storeCart(cart);
-    //             // quantity.value++
-
-    //         } else {
-    //             successAlert()
-    //             newCart.value = {
-
-    //                 id: more.product_id,
-    //                 product_price: more.product_price,
-    //                 product_image: more.product_image,
-    //                 quantity: quantity.value,
-    //                 product_name: more.product_name,
-    //                 totalPrice: quantity.value * more.product_price * 1
-
-    //             }
-    //             cart.push(newCart.value);
-    //             useProductStore.storeCart(cart);
-    //         }
-    //     } else {
-    //         successAlert()
-    //         let productId = route.params.id * 1;
-    //         let existingCartItem = cart.find(item => item.id === productId);
-
-    //         if (existingCartItem) {
-    //             // Update the quantity of the existing item
-    //             existingCartItem.quantity += quantity.value
-
-    //             console.log('Quantity updated for existing item:', existingCartItem);
-    //             useProductStore.storeCart(cart);
-    //             // quantity.value++
-
-    //         } else {
-    //             successAlert()
-    //             newCart.value = {
-    //                 id: product.value.product_id,
-    //                 product_price: product.value.product_price,
-    //                 product_image: product.value.product_image,
-    //                 quantity: quantity.value,
-    //                 product_name: product.value.product_name,
-    //                 totalPrice: quantity.value * product.value.product_price * 1
-
-    //             }
-    //             cart.push(newCart.value);
-    //             useProductStore.storeCart(cart);
-
-
-    //         }
-
-
-
-    //         // Update the cart state in the store
-
-    //         // Increment the quantity value
-
-    //     }
-
-    // }
     let addToCart = (event, more = {}) => {
         let cart = useProductStore.cart;
         successAlert();
 
-        let id = more.product_id || route.params.id * 1;
+        let id = more.product_id || route.params.id;
         let existingCartItem = cart.find(item => item.id === id);
+        console.log(cart, 'cartitem')
+        console.log(existingCartItem, 'existing cart item')
+        if (cart.find(item => item.id === id)) {
+            // existingCartItem.quantity += quantity.value;//useproductstore.cart.value is modified
+            cart.find(item => item.id === id).quantity += quantity.value;
 
-        if (existingCartItem) {
-            existingCartItem.quantity += quantity.value;
+            useProductStore.storeCart(useProductStore.cart);
             console.log('Quantity updated for existing item:', existingCartItem);
         } else {
             let newCart = {
@@ -148,9 +84,12 @@ export default function detail() {
                 totalPrice: quantity.value * (more.product_price || product.value.product_price) * 1
             };
             cart.push(newCart);
+            //cart.push ===useproductionstore.cart.push
+            // useProductStore.storeCart(cart.push)
+            useProductStore.storeCart(cart);
         }
 
-        useProductStore.storeCart(cart);
+
     };
 
     const increasement = () => {
@@ -179,3 +118,25 @@ export default function detail() {
     }
 }
 
+
+
+// does find method refrence the exising item ?
+//
+
+// No, the find method in JavaScript does not create a reference to the existing item in the array.Instead, it returns a reference to the found item itself.This means that the variable assigned to the result of find holds a reference to the actual item in the array, not a copy or a reference to the array itself.
+
+// In your previous example:
+
+// javascript
+
+// let array = [
+//     { id: 1, name: 'Item 1' },
+//     { id: 2, name: 'Item 2' },
+//     { id: 3, name: 'Item 3' }
+// ];
+
+// let array2 = array.find(item => item.id === 2);
+
+// array2 will hold a reference to the object { id: 2, name: 'Item 2' } in the array.Modifying properties of array2 will directly modify the corresponding object in the original array.
+
+//     However, it's important to note that the reference itself is not stored in the array. The find method returns a reference to the object in the array, but the array itself still contains the original objects.
