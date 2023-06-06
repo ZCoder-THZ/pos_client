@@ -28,7 +28,7 @@ export default function App() {
         console.log(useToken.user)
     })
     let imageCheck = computed(() => {
-        if (useToken.user.image !== `http://${useApiStore.apiRoute}/storage/null`) {
+        if (useToken.user.image !== `https://${useApiStore.apiRoute}/storage/null`) {
             return useToken.user.image
         } else {
             if (useToken.user.gender === 'female') {

@@ -242,7 +242,7 @@ let addToCart = (event, id, product_price, product_name, product_image) => {
 }
 
 let getProducts = async () => {
-    let dbProducts = await axios.get(`http://${useApiStore.apiRoute}/api/products`, {
+    let dbProducts = await axios.get(`https://${useApiStore.apiRoute}/api/products`, {
         params: {
             search: searchKey.value
 
@@ -256,7 +256,7 @@ let getProducts = async () => {
             // Do nothing as the image is already hosted elsewhere
             pro.category_id = pro.category_id * 1
         } else {
-            pro.product_image = `http://${useApiStore.apiRoute}/storage/${pro.product_image}`;
+            pro.product_image = `https://${useApiStore.apiRoute}/storage/${pro.product_image}`;
             pro.category_id = pro.category_id * 1
 
 
@@ -268,7 +268,7 @@ let getProducts = async () => {
 }
 
 let getCategories = async () => {
-    let dbCategories = await axios.get(`http://${useApiStore.apiRoute}/api/category`);
+    let dbCategories = await axios.get(`https://${useApiStore.apiRoute}/api/category`);
     useProductStore.categories = dbCategories.data.category
 }
 

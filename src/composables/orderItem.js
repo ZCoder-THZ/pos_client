@@ -10,7 +10,7 @@ export default function orderItem() {
     const route = useRoute();
     let orderCode = route.params.orderCode
     let getOrderItems = async () => {
-        let dbOrderItems = await axios.get(`http://${useApiStore.apiRoute}/api/orderItems/${orderCode}`);
+        let dbOrderItems = await axios.get(`https://${useApiStore.apiRoute}/api/orderItems/${orderCode}`);
         orderItems.value = dbOrderItems.data.orderItems
         console.log(orderItems.value)
     }

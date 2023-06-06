@@ -9,7 +9,7 @@
             </div>
         </div>
 
-        <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 overflow-hidden">
             <div class="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
                 <div class="lg:col-span-2 lg:py-12 px-3">
                     <h1 class="text-center text-3xl mb-4">Address</h1>
@@ -28,9 +28,9 @@
                                 class="fa-solid fa-envelope"></i>
                             thanhtikezaw919@gmail.com
                         </a>
-                        <address class="mt-2 font-bold not-italic tex-2xl text-green-600
+                        <address class="mt-2 font-bold not-italic text-2xl text-green-600
                         ">
-                            <i class="fa-solid  fa-2x fa-location-dot"></i> 282 Kevin Brook, Imogeneborough, CA 58517
+                            <i class="fa-solid  fa-2x fa-location-dot"></i>Yangon
                         </address>
                     </div>
                 </div>

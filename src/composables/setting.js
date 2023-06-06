@@ -27,7 +27,7 @@ export default function profileSetting() {
         updateData.append('address', address.value);
         updateData.append('phone', phone.value);
 
-        let update = await axios.post(`http://${useApiStore.apiRoute}/api/editProfile`, updateData, {
+        let update = await axios.post(`https://${useApiStore.apiRoute}/api/editProfile`, updateData, {
             headers: {
                 "Content-Type": 'multipart/form-data'
             }
@@ -51,7 +51,7 @@ export default function profileSetting() {
 
     console.log(selectedImage.value)
     let getUserImage = computed(() => {
-        if (userImage.value !== `http://${useApiStore.apiRoute}/storage/null`) {
+        if (userImage.value !== `https://${useApiStore.apiRoute}/storage/null`) {
             return userImage.value
         } else {
             if (gender.value == 'male') {

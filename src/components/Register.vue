@@ -1,7 +1,8 @@
 <template>
     <div class="">
         <div class="w-screen  flex items-center justify-center">
-            <div class="border-2 mt-4 p-4 border-gray-600 rounded bg-slate-900 mt-[6rem] mb-[4rem]">
+            <div
+                class="border-2 w-[320px]  md:w-[40%] lg:w-[40%] mt-4 p-4 border-gray-600 rounded bg-slate-900 mt-[6rem] mb-[4rem]">
                 <h1 class="text-center text-white text-3xl my-5 underline ">Register</h1>
                 <div class="grid gap-6 mb-6 md:grid-cols-2">
 

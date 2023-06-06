@@ -57,7 +57,7 @@ onMounted(() => {
 })
 
 let login = async () => {
-    let log = await axios.post(`http://${useApiStore.apiRoute}/api/login`, {
+    let log = await axios.post(`https://${useApiStore.apiRoute}/api/login`, {
         email: email.value,
         password: password.value
     });
@@ -65,7 +65,7 @@ let login = async () => {
     if (log.data.token) {
         let token = log.data.token
         useToken.token = token
-        log.data.user.image = `http://${useApiStore.apiRoute}/storage/${log.data.user.image}`
+        log.data.user.image = `https://${useApiStore.apiRoute}/storage/${log.data.user.image}`
         useToken.user = log.data.user
         useToken.login(token);
         useToken.storeUser(log.data.user)

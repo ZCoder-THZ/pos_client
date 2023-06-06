@@ -38,7 +38,7 @@ export default function register() {
                 "address": address.value,
 
             }
-            let create = await axios.post(`http://${useApiStore.apiRoute}/api/register`, data)
+            let create = await axios.post(`https://${useApiStore.apiRoute}/api/register`, data)
             // let dataApi = create.data
 
             // useToken.token = dataApi.token;

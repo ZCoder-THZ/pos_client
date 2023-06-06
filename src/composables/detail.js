@@ -25,14 +25,14 @@ export default function detail() {
 
     }
     let getRandomProduct = async () => {
-        let random = await axios.get(`http://${useApiStore.apiRoute}/api/products/random`);
+        let random = await axios.get(`https://${useApiStore.apiRoute}/api/products/random`);
 
         random.data.random.forEach(rand => {
 
             if (rand.product_image.startsWith("https://via.placeholder.com/") || rand.product_image.startsWith("https://images.unsplash.com/")) {
                 // Do nothing as the image is already hosted elsewhere
             } else {
-                rand.product_image = `http://${useApiStore.apiRoute}/storage/${rand.product_image}`
+                rand.product_image = `https://${useApiStore.apiRoute}/storage/${rand.product_image}`
 
             }
         });
@@ -43,9 +43,9 @@ export default function detail() {
 
     }
     let getProduct = async () => {
-        let dbProduct = await axios.get(`http://${useApiStore.apiRoute}/api/product/${route.params.id}`)
+        let dbProduct = await axios.get(`https://${useApiStore.apiRoute}/api/product/${route.params.id}`)
         if (!dbProduct.data.product.product_image.startsWith('https://images.unsplash.com/')) {
-            dbProduct.data.product.product_image = `http://${useApiStore.apiRoute}/storage/${dbProduct.data.product.product_image}`;
+            dbProduct.data.product.product_image = `https://${useApiStore.apiRoute}/storage/${dbProduct.data.product.product_image}`;
             console.log(dbProduct.data.product.product_image)
         } else {
 
@@ -96,8 +96,11 @@ export default function detail() {
         quantity.value++
     }
     const decreasement = () => {
-        quantity.value--
+        if (quantity.value > 1) {
+            quantity.value--;
+        }
     }
+
 
 
     onMounted(() => {

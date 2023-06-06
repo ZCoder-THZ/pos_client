@@ -9,7 +9,7 @@ export default function profile() {
     useToken.getUser()
     userProfile.value = useToken.user;
     let imageCheck = computed(() => {
-        if (useToken.user.image !== `http://${useApiStore.apiRoute}/storage/users/null`) {
+        if (useToken.user.image !== `https://${useApiStore.apiRoute}/storage/users/null`) {
             return useToken.user.image
         } else {
             if (useToken.user.gender === 'female') {

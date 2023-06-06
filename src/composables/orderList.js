@@ -9,13 +9,13 @@ export default function orderList() {
     let useToken = useTokenStore()
     let userId = ref();
     let getOrderList = async () => {
-        let dbOrderList = await axios.get(`http://${useApiStore.apiRoute}/api/order/${userId.value}`);
+        let dbOrderList = await axios.get(`https://${useApiStore.apiRoute}/api/order/${userId.value}`);
         orders.value = dbOrderList.data.orders
         console.log(orders.value)
         // console.log(orders.value[0].status)
     }
     let removeOrder = async (orderCode) => {
-        let dbOrderList = await axios.delete(`http://${useApiStore.apiRoute}/api/order/${orderCode}`);
+        let dbOrderList = await axios.delete(`https://${useApiStore.apiRoute}/api/order/${orderCode}`);
 
         getOrderList();
 

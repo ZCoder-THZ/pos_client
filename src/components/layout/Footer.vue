@@ -1,5 +1,5 @@
 <template>
-    <footer class="bg-neutral-900 text-center text-white">
+    <footer class="bg-neutral-900 text-center text-white flex justify-center overflow-hidden">
         <div class="container px-6 pt-6">
             <!-- Social media icons container -->
             <div class="mb-6 flex justify-center">
@@ -186,13 +186,13 @@
                     </ul>
                 </div>
             </div>
+            <div class="p-4 text-center" style="background-color: rgba(0, 0, 0, 0.2)">
+                © 2023 Copyright:
+                <a class="text-white" href="https://tailwind-elements.com/">Tailwind Elements</a>
+            </div>
         </div>
 
         <!-- Copyright section -->
-        <div class="p-4 text-center" style="background-color: rgba(0, 0, 0, 0.2)">
-            © 2023 Copyright:
-            <a class="text-white" href="https://tailwind-elements.com/">Tailwind Elements</a>
-        </div>
     </footer>
 </template>
 

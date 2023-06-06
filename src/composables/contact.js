@@ -24,7 +24,7 @@ export default function contact() {
                 message: message.value
             }
             try {
-                let connectContact = await axios.post(`http://${useApiStore.apiRoute}/api/contact`, data)
+                let connectContact = await axios.post(`https://${useApiStore.apiRoute}/api/contact`, data)
                 successMessage.value = true
                 errMessage.value = false
 
